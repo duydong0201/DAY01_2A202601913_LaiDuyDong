@@ -55,10 +55,7 @@ class _Collector:
 
 def run_test_group(pytest_args: list[str]) -> tuple[int, int]:
     """Chạy một nhóm test, trả về (số pass, tổng số)."""
-    resolved = [
-        str(DAY_DIR / arg) if arg.startswith("tests/") else arg
-        for arg in pytest_args
-    ]
+    resolved = pytest_args
     collector = _Collector()
     pytest.main(
         resolved + ["-q", "--tb=no", "--no-header", "-p", "no:cacheprovider"],
